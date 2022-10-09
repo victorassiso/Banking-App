@@ -1,0 +1,24 @@
+{
+  "name": "banking-app",
+  "version": "1.0.0",
+  "description": "NodeJs, Postgres and ReactJS Banking App Tutorial from the youtube chanel Aniruddha Kudalkar",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorassiso/Banking-App.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "ReactJS",
+    "Postgres"
+  ],
+  "author": "Victor Assis de Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victorassiso/Banking-App/issues"
+  },
+  "homepage": "https://github.com/victorassiso/Banking-App#readme"
+}
