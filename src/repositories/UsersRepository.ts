@@ -29,6 +29,12 @@ class UsersRepository {
   list(): User[] {
     return this.users;
   }
+
+  findByUsername(username: string): User | undefined {
+    const user = this.users.find((user) => user.username === username)
+
+    return user;
+  }
 };
 
 export { UsersRepository };
