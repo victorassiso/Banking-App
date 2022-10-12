@@ -1,16 +1,14 @@
 import { Router } from "express";
-import { UsersRepository } from "../modules/users/repositories/UsersRepository";
 import { CreateUserService } from "../modules/users/services/CreateUserService";
+import { usersRepository } from "./db";
 
 const userRoutes = Router();
-const usersRepository = new UsersRepository();
+// const usersRepository = new UsersRepository();
 
-// Create new User route
+// Create new User
 userRoutes.post("/", (request, response) => {
-  // Initialize body input
   const { name, username, password } = request.body
 
-  // Call Create User Service
   const createUserService = new CreateUserService(usersRepository);
   try {
     createUserService.execute({ name, username, password });
@@ -19,15 +17,54 @@ userRoutes.post("/", (request, response) => {
       return response.status(400).json({ error: error.message });
     }
   }
-
-  // Return status 201 (Created)
+  
   return response.status(201).json({ message: "The user was created successfully!" });
 })
 
 // List all users
-userRoutes.get("/", (request, response) => {
+userRoutes.get("/all", (request, response) => {
   const users = usersRepository.list();
   return response.json(users);
+})
+
+// Get user by username
+userRoutes.get("/username", (request, response) => {
+  const { username } = request.body;
+
+  try {
+    
+    const user = usersRepository.getByUsername(username);
+    return response.json({ user: user});
+
+  } catch (error) {
+    
+    if (error instanceof Error) {
+    
+      return response.status(400).json({ error: error.message })
+    
+    }
+  }
+  
+})
+
+// Get user by id
+userRoutes.get("/id", (request, response) => {
+  const { id } = request.body;
+
+  try {
+    
+    const user = usersRepository.getById(id);
+    return response.json({ user: user});
+
+  } catch (error) {
+    
+    if (error instanceof Error) {
+    
+      return response.status(400).json({ error: error.message })
+    
+    }
+  }
+  
 })
 
 export { userRoutes };

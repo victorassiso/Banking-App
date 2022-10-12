@@ -20,11 +20,23 @@ class UsersRepository implements IUsersRepository{
     return this.users;
   }
 
-  findByUsername(username: string): User | null {
+  getByUsername(username: string): User | null {
     const user = this.users.find((user) => user.username === username)
+    
     if (user == undefined) {
-      return null
+      return null;
     }
+
+    return user;
+  }
+
+  getById(id: string): User | null {
+    const user = this.users.find((user) => user.id === id)
+    
+    if (user == undefined) {
+      return null;
+    }
+
     return user;
   }
 };

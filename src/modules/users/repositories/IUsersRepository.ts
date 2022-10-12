@@ -10,7 +10,8 @@ interface ICreateUserDTO {
 interface IUsersRepository {
   create({name, username, password}: ICreateUserDTO): User;
   list(): User[];
-  findByUsername(name: string): User | null;
+  getByUsername(name: string): User | null;
+  getById(name: string): User | null;
 }
 
 export { ICreateUserDTO, IUsersRepository };
